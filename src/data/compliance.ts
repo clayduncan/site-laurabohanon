@@ -2,7 +2,7 @@ import { site } from './site';
 
 export const compliance = {
   licenseLabel: 'Alabama RE License',
-  licenseNumber: 'pending verification',
+  licenseNumber: '000093260-0',
   brokerage: site.brokerage,
   brokerageDisclaimer:
     'This is the personal website of Laura Bohanon and is not operated by or endorsed by Davidson Homes LLC.',
