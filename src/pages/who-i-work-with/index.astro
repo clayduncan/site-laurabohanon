@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { personJsonLd, faqJsonLd } from '../../data/schema';
+import { compliance } from '../../data/compliance';
+---
+
+<BaseLayout
+  title="Who Laura Bohanon Works With — New-Construction Buyers in Huntsville, AL"
+  description="Laura Bohanon works with first-time buyers, move-up buyers, and downsizers exploring Davidson Homes communities in Owens Cross Roads, Hampton Cove, and Madison County, Alabama."
+  schema={[personJsonLd, faqJsonLd]}
+  canonicalPath="/who-i-work-with/"
+>
+  <section class="section-alt" style="padding-top:4rem">
+    <div class="container">
+      <h1 class="section-title">Who Laura Works With</h1>
+      <p class="section-lead">
+        Laura works with buyers exploring Davidson Homes new-construction communities
+        in Madison County. Here is who she works with most.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>First-Time Buyers</h3>
+          <p>You have never bought a new home before and you want to understand the process — contracts, options and upgrades, inspections, timelines — before you commit. Laura has done this dozens of times. She can walk you through it clearly.</p>
+        </div>
+        <div class="card">
+          <h3>Move-Up Buyers</h3>
+          <p>You are ready for more space or a newer home with features your current house does not have. Davidson's semi-custom model means you can get what you actually want, not just what was already built.</p>
+        </div>
+        <div class="card">
+          <h3>Downsizers</h3>
+          <p>You want a low-maintenance new build that fits your next chapter. Davidson Homes offers newer construction with modern systems and energy efficiency — without the maintenance headaches of an older home.</p>
+        </div>
+      </div>
+
+      <div class="compliance-notice">
+        <strong>Alabama representation notice:</strong> {compliance.recadNotice}
+      </div>
+    </div>
+  </section>
+
+  <!-- Preferred lender section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Preferred Lender</h2>
+      <p class="section-lead">
+        For buyers who want a trusted lending partner, Laura works with Levi Duncan
+        at Princeton Mortgage. Levi specializes in helping North Alabama buyers understand
+        their financing options before builder timelines create pressure.
+      </p>
+
+      <div class="lender-card">
+        <div class="lender-photo">
+          <img src={site.preferredLender.headshot} alt={`${site.preferredLender.name}, ${site.preferredLender.title}`} loading="lazy" decoding="async" />
+        </div>
+        <div class="lender-info">
+          <h3>{site.preferredLender.name}</h3>
+          <p class="lender-title">
+            {site.preferredLender.title} | NMLS #{site.preferredLender.nmls} |
+            {site.preferredLender.company} NMLS #{site.preferredLender.companyNmls}
+          </p>
+          <p>{site.preferredLender.description}</p>
+          <div class="lender-ctas">
+            <a href={site.preferredLender.applyUrl} class="btn btn-secondary" target="_blank" rel="noopener">Apply with Levi</a>
+            <a href={site.preferredLender.phoneHref} class="btn btn-outline">{site.preferredLender.phone}</a>
+            <a href={site.preferredLender.emailHref} style="align-self:center;color:var(--muted);font-size:0.9rem">{site.preferredLender.email}</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:1.5rem;line-height:1.5">
+        Buyers are free to choose any lender. Laura's reference to Levi Duncan is a personal recommendation; it is not a requirement and does not involve any compensation arrangement. Princeton Mortgage Corporation is an Equal Housing Lender.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-alt">
+    <div class="container" style="text-align:center">
+      <h2 class="section-title">Interested in exploring Davidson Homes?</h2>
+      <p class="section-lead" style="margin:1rem auto 2rem">Call Laura directly to talk through what you are looking for.</p>
+      <a href={site.phoneHref} class="btn btn-primary">{site.phoneDisplay}</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { compliance } from '../../data/compliance';
+import { personJsonLd, serviceJsonLd } from '../../data/schema';
+---
+
+<BaseLayout
+  title="About Laura Bohanon — New-Construction Specialist, Huntsville AL"
+  description="Laura Bohanon has been a licensed real estate agent for 18 years and has helped more than 200 families find the right home. Since joining Davidson Homes in January 2023, she has closed 85 transactions totaling $25 million in production across Madison County, Alabama."
+  schema={[personJsonLd, serviceJsonLd]}
+  canonicalPath="/about/"
+>
+  <section class="section-alt" style="padding-top:4rem">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-photo">
+          <img src={site.heroImage} alt="Laura Bohanon, REALTOR&reg;" loading="eager" decoding="async" />
+        </div>
+        <div class="bio-text">
+          <h1>Laura Bohanon</h1>
+          <p class="bio-subtitle">New-Construction Specialist, REALTOR&reg; | {compliance.brokerage}</p>
+
+          <p>
+            Laura Bohanon has been in real estate for 18 years — not because she loves houses,
+            but because she loves people. The home is the vehicle. The life someone gets to
+            live inside it is what she is actually working toward.
+          </p>
+
+          <p>
+            Over the course of her career she has helped more than 200 families find the right home
+            across northern Alabama. In January 2023, she made a deliberate choice: to focus
+            exclusively on new construction with Davidson Homes. Since then she has built one of
+            the strongest new-construction track records in Madison County: 85 closings and
+            $25 million in production.
+          </p>
+
+          <p>
+            That choice was not accidental. Laura chose Davidson because for a production builder,
+            they are genuinely semi-custom. Buyers get more structural options and upgrade choices
+            than any standard production build she had seen. She has walked the process closely,
+            knows what good looks like at each phase, and can explain it to a buyer who has never
+            bought a new home before.
+          </p>
+
+          <p>
+            Her primary community right now is Ramsay Cove in Owens Cross Roads, Alabama — a
+            Davidson Homes community in Madison County, on Highway 431 about 19 miles from
+            Huntsville, in the New Hope school district. She also works Hampton Cove and other
+            Madison County communities where Davidson builds.
+          </p>
+
+          <p>
+            Her typical clients are first-time buyers, move-up buyers, and downsizers who want
+            a low-maintenance new build. What they say about her consistently: she communicates.
+            She keeps clients informed at every stage of the process.
+          </p>
+
+          <p>
+            She is not trying to be the busiest agent in the room. She is trying to be the
+            most useful one to the person in front of her.
+          </p>
+
+          <div class="bio-stats">
+            <div class="stat">
+              <span class="stat-number">85</span>
+              <span class="stat-label">Closings Since Jan 2023</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">$25M</span>
+              <span class="stat-label">Production Since Jan 2023</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">18</span>
+              <span class="stat-label">Years Licensed</span>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+            <a href={site.phoneHref} class="btn btn-primary">Call Laura: {site.phoneDisplay}</a>
+            <a href={site.emailHref} class="btn btn-outline">Email Laura</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

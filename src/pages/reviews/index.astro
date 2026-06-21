@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { reviews, reviewAggregate, gbpReviewLink, displayName } from '../../data/reviews';
+import { personJsonLd } from '../../data/schema';
+
+// Build review schema
+const reviewsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site.url}/#laura`,
+  name: site.name,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: reviewAggregate.averageRating,
+    reviewCount: reviewAggregate.totalCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: reviews.map(r => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: displayName(r.author) },
+    datePublished: r.date,
+    reviewBody: r.text,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: r.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Reviews — Laura Bohanon, New-Construction Specialist"
+  description={`Laura Bohanon has ${reviewAggregate.totalCount} Zillow reviews with an aggregate ${reviewAggregate.averageRating} out of 5 stars. Clients consistently say she communicates throughout the process.`}
+  schema={[personJsonLd, reviewsJsonLd]}
+  canonicalPath="/reviews/"
+>
+  <section class="section-alt" style="padding-top:4rem">
+    <div class="container">
+      <h1 class="section-title">What Clients Say</h1>
+      <p class="section-lead">
+        {reviewAggregate.totalCount} reviews on Zillow. The theme that comes up again and again: communication.
+      </p>
+
+      <!-- Aggregate rating bar -->
+      <div class="review-aggregate">
+        <span class="agg-score">{reviewAggregate.averageRating}</span>
+        <div class="agg-detail">
+          <span class="star-rating">{'★'.repeat(5)}</span>
+          <span class="agg-count">{reviewAggregate.totalCount} reviews on Zillow</span>
+          <a href={reviewAggregate.sourceUrl} target="_blank" rel="noopener" style="font-size:0.85rem;color:var(--gold);">
+            See on Zillow &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Review cards -->
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))">
+        {reviews.map(r => (
+          <div class="review-card">
+            <div style="margin-bottom:0.5rem">
+              {'★'.repeat(r.rating)}{r.rating < 5 ? '☆'.repeat(5 - r.rating) : ''}
+            </div>
+            <p class="review-text">"{r.text}"</p>
+            <div class="review-meta">
+              <span class="review-author">{displayName(r.author)}</span>
+              <span class="review-source">{r.date} · Zillow</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {gbpReviewLink && (
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href={gbpReviewLink} class="btn btn-secondary" target="_blank" rel="noopener">
+            Read more on Google
+          </a>
+        </div>
+      )}
+
+      <div style="text-align:center;margin-top:3rem">
+        <h2 class="section-title" style="margin-bottom:1rem">Want to work with Laura?</h2>
+        <a href={site.phoneHref} class="btn btn-primary">{site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

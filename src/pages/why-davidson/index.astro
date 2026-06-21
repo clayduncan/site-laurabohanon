@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { personJsonLd } from '../../data/schema';
+import { compliance } from '../../data/compliance';
+---
+
+<BaseLayout
+  title="Why Laura Bohanon Chose Davidson Homes — New Construction in Owens Cross Roads and Hampton Cove, AL"
+  description="Laura Bohanon joined Davidson Homes because Davidson is a semi-custom production builder — more options and upgrades than a standard production build. Her primary community is Ramsay Cove in Owens Cross Roads, Alabama."
+  schema={[personJsonLd]}
+  canonicalPath="/why-davidson/"
+>
+  <section class="section-alt" style="padding-top:4rem">
+    <div class="container" style="max-width:800px">
+      <h1 class="section-title">Why Laura Chose Davidson Homes</h1>
+
+      <p style="font-size:1.1rem;color:var(--muted);margin-bottom:2rem;line-height:1.6">
+        Laura has worked with buyers across builders and markets over 18 years. She did not end up at Davidson by accident.
+      </p>
+
+      <p>
+        In January 2023, after nearly two decades in residential real estate across northern Alabama,
+        Laura made a deliberate decision to focus exclusively on new construction. She had options.
+        She chose Davidson Homes.
+      </p>
+
+      <p>
+        The reason was straightforward: Davidson is a semi-custom production builder. That matters.
+        Most production builders work from a fixed set of floor plans with limited finish options.
+        Davidson gives buyers more — structural options, upgrade choices, elevation selections —
+        across each home series. You are not just choosing countertops. You can influence how the
+        home is actually built, within the series. That level of flexibility is rare at the
+        production price point.
+      </p>
+
+      <p>
+        That is not marketing language. It is what Laura observed after walking buyers through
+        the process and comparing it to what she had seen at other builders. Davidson's
+        construction quality and semi-custom model stand up — and they are why she is
+        comfortable putting her name next to theirs.
+      </p>
+
+      <h2 style="margin:2.5rem 0 1rem">Ramsay Cove, Owens Cross Roads</h2>
+
+      <p>
+        The majority of Laura's work right now is in Ramsay Cove, a Davidson Homes community
+        in Owens Cross Roads, Alabama. Ramsay Cove is in Madison County, on Highway 431,
+        about 19 miles from Huntsville. It is in the New Hope school district.
+      </p>
+
+      <p>
+        Laura knows the lots, the floor plan series available in the community, the upgrade
+        options at each tier, and the current build cadence. She can tell you what to ask
+        before you sign and what to watch for during the build process.
+      </p>
+
+      <h2 style="margin:2.5rem 0 1rem">Hampton Cove and Madison County</h2>
+
+      <p>
+        Davidson also builds in Hampton Cove and other Madison County communities.
+        If you are exploring communities outside Ramsay Cove, Laura can speak to
+        what Davidson builds across the area, not just one community.
+      </p>
+
+      <h2 style="margin:2.5rem 0 1rem">A note on representation</h2>
+
+      <p>
+        Laura is a licensed agent at Davidson Homes LLC. Her role is as a sales agent
+        for Davidson communities. In Alabama, representation is established through a
+        written agreement. The right conversation to have is before you tour, not after
+        you sign.
+      </p>
+
+      <div class="compliance-notice">
+        This is the personal website of Laura Bohanon and is not operated by or endorsed by Davidson Homes LLC. {compliance.recadNotice}
+      </div>
+
+      <div style="margin-top:2.5rem">
+        <a href="https://www.davidsonhomes.com" target="_blank" rel="noopener" class="btn btn-outline" style="margin-right:1rem">View Davidson Homes Communities</a>
+        <a href={site.phoneHref} class="btn btn-primary">Call Laura: {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

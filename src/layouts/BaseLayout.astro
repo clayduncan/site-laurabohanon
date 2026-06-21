@@ -1,0 +1,125 @@
+---
+import globalStyles from '../styles/global.css?inline';
+import { compliance } from '../data/compliance';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  schema?: object | object[];
+  ogImage?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description = site.description,
+  schema,
+  ogImage = site.heroImage,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const canonicalUrl = `${site.url}${canonicalPath}`;
+const ogImageUrl = `${site.url}${ogImage}`;
+
+// GA4 measurement ID — SWAP THIS when the GA4 property is provisioned
+// TODO: Create a new GA4 property at analytics.google.com for laurabohanon.com, get the measurement ID, replace G-PLACEHOLDER below
+const GA4_ID = 'G-PLACEHOLDER';
+
+const schemaArr = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Preload self-hosted fonts -->
+    <link rel="preload" href="/fonts/inter/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/source-serif-4/SourceSerif4-800.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Inline critical CSS -->
+    <style set:html={globalStyles} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Deferred GA4 — loads after 3s idle or first interaction -->
+    <script is:inline define:vars={{ GA4_ID }}>
+      (function() {
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', GA4_ID);
+        }
+        setTimeout(loadGA, 3000);
+        ['scroll','mousemove','touchstart','keydown'].forEach(function(e) {
+          document.addEventListener(e, loadGA, { once: true, passive: true });
+        });
+      })();
+    </script>
+
+    <!-- JSON-LD Schema -->
+    {schemaArr.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="container">
+        <a href="/" class="nav-brand">Laura Bohanon</a>
+        <ul class="nav-links">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/who-i-work-with/">Who I Work With</a></li>
+          <li><a href="/why-davidson/">Why Davidson</a></li>
+          <li><a href="/reviews/">Reviews</a></li>
+          <li><a href={site.phoneHref} class="nav-cta">Call Laura</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <span class="footer-name">Laura Bohanon</span>
+          <span class="footer-brokerage">{compliance.brokerage}</span>
+          <span class="footer-license">{compliance.licenseLabel}: {compliance.licenseNumber}</span>
+          <p class="footer-compliance">{compliance.brokerageDisclaimer}</p>
+          <p class="footer-compliance">{compliance.recadNotice}</p>
+          <p class="footer-eho">{compliance.equalHousing}</p>
+          <p class="footer-compliance" style="margin-top:0.5rem">
+            &copy; {new Date().getFullYear()} Laura Bohanon. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

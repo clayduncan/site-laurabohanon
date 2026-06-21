@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import { personJsonLd, websiteJsonLd, serviceJsonLd } from '../data/schema';
+---
+
+<BaseLayout
+  title="Laura Bohanon — New-Construction Specialist in Huntsville, AL"
+  description="Laura Bohanon helps buyers find their home at Davidson Homes communities in Ramsay Cove, Owens Cross Roads, Hampton Cove, and Madison County, Alabama. 18 years licensed. Davidson Homes agent since January 2023."
+  schema={[personJsonLd, websiteJsonLd, serviceJsonLd]}
+  canonicalPath="/"
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1>New Construction,<br />Real Communication.</h1>
+        <p class="tagline">
+          Laura Bohanon helps buyers navigate Davidson Homes communities in
+          Ramsay Cove, Owens Cross Roads, and Hampton Cove. Eighteen years
+          in real estate. Davidson Homes agent since January 2023.
+          85 closings, $25 million in production. She answers her own phone.
+        </p>
+        <div class="hero-ctas">
+          <a href={site.phoneHref} class="btn btn-primary">Call Laura: {site.phoneDisplay}</a>
+          <a href="/about/" class="btn btn-outline">About Laura</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src={site.heroImage} alt="Laura Bohanon, New-Construction Specialist, Davidson Homes" loading="eager" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Nav cards -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Get to Know Laura</h2>
+      <p class="section-lead">
+        Laura has been a licensed agent for 18 years, now focused exclusively on new construction
+        with Davidson Homes in Madison County, Alabama. Here is what you need to know.
+      </p>
+      <div class="card-grid">
+        <a href="/about/" class="card" style="display:block;text-decoration:none;color:inherit">
+          <h3>About Laura</h3>
+          <p>Eighteen years in real estate. 200+ homes helped. Now focused exclusively on new construction with Davidson Homes in North Alabama.</p>
+          <span class="card-link">Read her story &rarr;</span>
+        </a>
+        <a href="/who-i-work-with/" class="card" style="display:block;text-decoration:none;color:inherit">
+          <h3>Who She Works With</h3>
+          <p>First-time buyers, move-up buyers, and downsizers exploring Davidson Homes communities in Owens Cross Roads, Hampton Cove, and Madison County.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </a>
+        <a href="/why-davidson/" class="card" style="display:block;text-decoration:none;color:inherit">
+          <h3>Why Davidson Homes</h3>
+          <p>Laura chose Davidson over other production builders. Here is why: they are a semi-custom builder, which means more options and upgrades than a standard production build.</p>
+          <span class="card-link">Her reasoning &rarr;</span>
+        </a>
+        <a href="/reviews/" class="card" style="display:block;text-decoration:none;color:inherit">
+          <h3>Reviews</h3>
+          <p>9 Zillow reviews. 4.89 out of 5 stars. Clients consistently say the same thing: Laura communicates.</p>
+          <span class="card-link">Read reviews &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat cards -->
+  <section class="section-alt">
+    <div class="container">
+      <h2 class="section-title">Davidson Homes, January 2023 to Today</h2>
+      <p class="section-lead">These are the numbers from her Davidson run. Hard stats, not estimates.</p>
+      <div class="bio-stats" style="max-width:700px">
+        <div class="stat">
+          <span class="stat-number">85</span>
+          <span class="stat-label">Homes Closed Since Jan 2023</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">$25M</span>
+          <span class="stat-label">Production Since Jan 2023</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">18</span>
+          <span class="stat-label">Years Licensed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ teaser -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">New to Davidson Homes?</h2>
+      <p class="section-lead">Common questions buyers have about the semi-custom options Davidson offers before they walk into the model home.</p>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <h3>What makes Davidson different from other production builders?</h3>
+          <p>Davidson is a semi-custom production builder. That means more structural options and upgrade choices than a standard production build. You are not just picking countertops — you can influence layout options, elevations, and finishes across each home series.</p>
+        </li>
+        <li class="faq-item">
+          <h3>Can I customize my Davidson home?</h3>
+          <p>Yes. The range of choices depends on the series and build phase. Laura can walk you through what options are available before you commit, so you understand what you can and cannot change before construction begins.</p>
+        </li>
+        <li class="faq-item">
+          <h3>Do I need my own agent when buying from a builder?</h3>
+          <p>No law requires it, but it is often valuable. In Alabama, representation is established through a written agreement. Arrange it before you tour — not after you sign.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="section-alt">
+    <div class="container" style="text-align:center">
+      <h2 class="section-title">Ready to explore Davidson Homes communities?</h2>
+      <p class="section-lead" style="margin:1rem auto 2rem">
+        Call Laura directly. She answers her own phone.
+      </p>
+      <a href={site.phoneHref} class="btn btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem">{site.phoneDisplay}</a>
+      <p style="margin-top:1rem"><a href={site.emailHref} style="color:var(--muted);font-size:0.9rem">{site.email}</a></p>
+    </div>
+  </section>
+</BaseLayout>

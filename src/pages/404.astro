@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Page Not Found | Laura Bohanon"
+  description="The page you were looking for may have moved. Find Laura Bohanon's contact info, bio, and new-construction guidance."
+  canonicalPath="/404/"
+>
+  <section class="section-alt" style="padding-top:4rem;text-align:center">
+    <div class="container" style="max-width:600px">
+      <h1>Page Not Found</h1>
+      <p style="color:var(--muted);margin:1.5rem 0 2rem;font-size:1.05rem">
+        That page may have moved or no longer exists. Here are some useful places to go.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="/" class="btn btn-primary">Go home</a>
+        <a href={site.phoneHref} class="btn btn-outline">Call Laura</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
